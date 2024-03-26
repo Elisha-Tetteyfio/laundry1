@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("DB_USERNAME") %>
+  password: <%= ENV.fetch("DB_PASSWORD") %>
+
+development:
+  <<: *default
+  database: laundry1
+
+test:
+  <<: *default
+  database: laundry1_test
+
+production:
+  <<: *default
+  database: laundry1_production
+  username: laundry1
+  password: <%= ENV["LAUNDRY1_DATABASE_PASSWORD"] %>
